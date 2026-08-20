@@ -1,0 +1,98 @@
+.mojang-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #db1f29; /* vermelho oficial da marca Mojang */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: intro-fade-out 0.8s ease-in 4.3s forwards;
+}
+
+@keyframes intro-fade-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Letras MOJANG girando em 3D, uma por uma */
+.mojang-word {
+  display: flex;
+  perspective: 900px;
+  font-weight: 900;
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(2.5rem, 10vw, 6rem);
+  color: #fff;
+  line-height: 1;
+}
+
+.mojang-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: rotateY(180deg) scale(1.6);
+  animation: letter-flip 0.7s cubic-bezier(0.25, 0.8, 0.3, 1.2) forwards;
+  text-shadow: 0 6px 0 rgba(0, 0, 0, 0.15);
+}
+
+@keyframes letter-flip {
+  0% {
+    opacity: 0;
+    transform: rotateY(180deg) scale(1.6);
+  }
+  50% {
+    opacity: 1;
+    transform: rotateY(20deg) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+/* STUDIOS aparecendo embaixo com espaçamento */
+.mojang-studios {
+  margin-top: 18px;
+  margin-right: -1em; /* compensa o letter-spacing da última letra p/ centralizar */
+  color: #fff;
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(0.8rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 1em;
+  opacity: 0;
+  animation: studios-in 0.9s ease-out 1.9s forwards;
+}
+
+@keyframes studios-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botão de pular a intro */
+.intro-skip {
+  position: absolute;
+  bottom: 24px;
+  right: 24px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Silkscreen', monospace;
+  font-size: clamp(0.8rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+}
+
+.intro-skip:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

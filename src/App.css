@@ -1,0 +1,1452 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+
+  background: #63b9ff;
+
+  color: #333;
+
+  font-family: 'Silkscreen', monospace;
+}
+
+button,
+a {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.minecraft-header {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 1000;
+
+  background: rgba(35, 63, 43, 0.96);
+
+  padding: 20px 0;
+
+  box-shadow:
+    0 3px 0 rgba(0, 0, 0, 0.25);
+
+  transition:
+    padding 0.35s ease,
+    background 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.minecraft-header.scrolled {
+  padding: 8px 0;
+
+  background: rgba(35, 63, 43, 0.98);
+
+  box-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+.header-content {
+  width: min(1200px, 100%);
+
+  margin: 0 auto;
+
+  padding: 0 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 25px;
+}
+
+.minecraft-header h1 {
+  font-family: 'Press Start 2P', monospace;
+
+  color: #fff;
+
+  font-size: 1.35rem;
+
+  text-shadow:
+    3px 3px 0 rgba(0, 0, 0, 0.5);
+
+  white-space: nowrap;
+
+  transition:
+    font-size 0.35s ease;
+}
+
+.minecraft-header.scrolled h1 {
+  font-size: 0.95rem;
+}
+
+.minecraft-header nav {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  flex-wrap: wrap;
+
+  justify-content: flex-end;
+}
+
+.minecraft-header nav a {
+  font-family: 'Silkscreen', monospace;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 0.68rem;
+
+  padding: 6px 9px;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.minecraft-header nav a:hover {
+  background: rgba(255, 255, 255, 0.12);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   COORDENADAS
+========================================================= */
+
+.coordinates-hud {
+  position: fixed;
+
+  top: 78px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 900;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 8px 14px;
+
+  background: rgba(0, 0, 0, 0.62);
+
+  color: #fff;
+
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.7rem;
+
+  pointer-events: none;
+
+  text-shadow:
+    2px 2px 0 #000;
+
+  transition:
+    top 0.35s ease;
+}
+
+.coordinates-hud span {
+  color: #aaa;
+}
+
+.coordinates-hud strong {
+  color: #fff;
+
+  font-weight: normal;
+}
+
+.minecraft-header.scrolled ~ .coordinates-hud {
+  top: 58px;
+}
+
+
+/* =========================================================
+   CÉU
+========================================================= */
+
+.sky-section {
+  position: relative;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  padding:
+    140px
+    20px
+    100px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      #63b9ff 0%,
+      #83cfff 55%,
+      #b8e5ff 100%
+    );
+}
+
+
+/* =========================================================
+   SOL
+========================================================= */
+
+.pixel-sun {
+  position: absolute;
+
+  width: 700px;
+  height: 700px;
+
+  top: -170px;
+  right: -15%;
+
+  background-image: url('/sky/sun-transparent.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  image-rendering: pixelated;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NUVENS
+========================================================= */
+
+.pixel-cloud {
+  position: absolute;
+
+  width: 1000px;
+  height: 1000px;
+
+  background-image: url('/sky/clouds-transparent.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+
+  image-rendering: pixelated;
+
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   NUVEM 1
+========================================================= */
+
+.cloud-one {
+  top: -350px;
+  left: -4.6%;
+
+  transform: scale(0.9);
+}
+
+
+/* =========================================================
+   NUVEM 2
+========================================================= */
+
+.cloud-two {
+  top: -50px;
+  right: -9.7%;
+
+  transform: scale(0.75);
+}
+
+
+/* =========================================================
+   NUVEM 3
+========================================================= */
+
+.cloud-three {
+  top: 140px;
+  left: -15%;
+
+  transform: scale(0.6) scaleX(-1);
+}
+
+
+/* =========================================================
+   CONTEÚDO DO CÉU
+========================================================= */
+
+.sky-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: min(850px, 100%);
+
+  color: #fff;
+}
+
+.eyebrow {
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.8rem;
+
+  letter-spacing: 3px;
+
+  margin-bottom: 20px;
+
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.sky-content h2 {
+  font-family: 'Press Start 2P', monospace;
+
+  font-size:
+    clamp(1.7rem, 5vw, 3.4rem);
+
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+
+  text-shadow:
+    4px 4px 0 #3f5f72;
+}
+
+.sky-content > p:not(.eyebrow) {
+  max-width: 700px;
+
+  margin:
+    0 auto
+    30px;
+
+  font-size: 1.1rem;
+
+  line-height: 1.8;
+
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   BOTÃO
+========================================================= */
+
+.minecraft-button {
+  display: inline-block;
+
+  padding: 14px 24px;
+
+  background: #4c9a3c;
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-family: 'Silkscreen', monospace;
+
+  border: 3px solid;
+
+  border-color:
+    #83d46d
+    #285b20
+    #285b20
+    #83d46d;
+
+  box-shadow:
+    4px 4px 0 rgba(0, 0, 0, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.minecraft-button:hover {
+  background: #5db94a;
+
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   HISTÓRIA DO MUNDO
+========================================================= */
+
+.world-story {
+  position: relative;
+
+  width: 100%;
+
+  padding: 0;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   SEÇÕES DO MUNDO
+========================================================= */
+
+.world-section {
+  position: relative;
+
+  width: 100%;
+
+  /*
+   * A altura agora é determinada pelo conteúdo.
+   * Isso evita espaços gigantes e áreas de cor sólida.
+   */
+  min-height: 0;
+
+  padding: 80px 55px;
+
+  background: transparent;
+
+  border: none;
+
+  box-shadow: none;
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+
+/*
+ * O conteúdo fica na frente
+ * das texturas.
+ */
+
+.overworld-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: min(900px, 100%);
+
+  margin: 0 auto;
+
+  padding: 80px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   TÍTULOS
+========================================================= */
+
+.overworld-content h2 {
+  margin: 0 0 14px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size:
+    clamp(1.3rem, 4vw, 2.4rem);
+
+  line-height: 1.5;
+
+  text-align: left;
+
+  text-shadow:
+    4px 4px 0 #000,
+    0 0 8px rgba(0, 0, 0, 0.45);
+}
+
+
+.world-subtitle {
+  margin: 0 0 32px;
+
+  color: #fff;
+
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.9rem;
+
+  text-align: center;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   TEXTO FLUIDO
+========================================================= */
+
+.world-panel {
+  width: min(900px, 100%);
+  padding: 28px 32px;
+  margin: 0;
+
+  background: rgba(0, 0, 0, 0.48);
+
+  border: 2px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    4px 4px 0 rgba(0, 0, 0, 0.35);
+
+  color: #fff;
+  line-height: 1.9;
+  text-align: left;
+
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.65);
+}
+
+
+.world-panel p {
+  margin: 0 0 22px;
+
+  font-size: 0.9rem;
+
+  line-height: 1.9;
+}
+
+
+.world-panel p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   CONTEÚDO ÚNICO DO OVERWORLD
+========================================================= */
+
+.world-content-section {
+  width: 100%;
+
+  padding: 28px 32px;
+
+  background: rgba(0, 0, 0, 0.48);
+
+  border: 2px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    4px 4px 0 rgba(0, 0, 0, 0.35);
+
+  color: #fff;
+
+  line-height: 1.9;
+
+  text-align: left;
+
+  text-shadow:
+    2px 2px 0 rgba(0, 0, 0, 0.65);
+}
+
+
+/* Títulos dentro do conteúdo */
+
+.world-content-section h2 {
+  margin: 0 0 14px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size:
+    clamp(1.2rem, 3vw, 1.8rem);
+
+  line-height: 1.5;
+
+  text-align: left;
+
+  text-shadow:
+    3px 3px 0 #000;
+}
+
+
+/* Subtítulos */
+
+.world-content-section .world-subtitle {
+  margin: 0 0 25px;
+
+  color: #d9d9d9;
+
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.85rem;
+
+  text-align: left;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* Parágrafos */
+
+.world-content-section p {
+  margin: 0 0 22px;
+
+  font-size: 0.9rem;
+
+  line-height: 1.9;
+}
+
+
+/* Títulos menores */
+
+.world-content-section h3 {
+  margin:
+    30px
+    0
+    14px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 0.95rem;
+
+  text-shadow:
+    3px 3px 0 #000;
+}
+
+
+/* Listas */
+
+.world-content-section .minecraft-list {
+  margin-top: 15px;
+}
+
+
+/* Destaques */
+
+.world-content-section .highlight-text {
+  margin-top: 25px;
+
+  padding: 15px 18px;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  border-left: 4px solid #8ee6ff;
+
+  color: #8ee6ff;
+
+  font-family: 'Silkscreen', monospace;
+
+  line-height: 1.8;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   TÍTULOS INTERNOS
+========================================================= */
+
+.world-panel h3 {
+  margin:
+    28px
+    0
+    14px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 1rem;
+
+  text-shadow:
+    3px 3px 0 #000;
+}
+
+
+/* =========================================================
+   LISTA
+========================================================= */
+
+.minecraft-list {
+  margin:
+    20px
+    0
+    0;
+
+  padding-left: 25px;
+
+  list-style: none;
+}
+
+
+.minecraft-list li {
+  margin-bottom: 10px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   DESTAQUE
+========================================================= */
+
+.highlight-text {
+  margin-top: 25px;
+
+  padding: 0;
+
+  background: transparent;
+
+  border: none;
+
+  color: #8ee6ff;
+
+  font-family: 'Silkscreen', monospace;
+
+  line-height: 1.8;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   FATOS
+========================================================= */
+
+.minecraft-facts {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  margin-top: 25px;
+}
+
+
+.minecraft-facts div {
+  padding: 0;
+
+  background: transparent;
+
+  border: none;
+}
+
+
+.minecraft-facts strong,
+.minecraft-facts span {
+  display: block;
+}
+
+
+.minecraft-facts strong {
+  margin-bottom: 6px;
+
+  color: #fff;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 0.75rem;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+.minecraft-facts span {
+  color: #fff;
+
+  font-size: 0.85rem;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   CAMADAS DO OVERWORLD
+========================================================= */
+
+.overworld-layers {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   CAMADA DE BLOCOS
+========================================================= */
+
+.block-layer {
+  position: relative;
+
+  width: 100%;
+  height: auto;
+
+  display: grid;
+
+  flex-shrink: 0;
+
+  overflow: hidden;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  image-rendering: pixelated;
+}
+
+.minecraft-block {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================================================
+   CAIXA CINZA GIGANTE
+========================================================= */
+
+.world-story-panel {
+  position: relative;
+
+  width: 100%;
+
+  margin: 0;
+
+  background: transparent;
+
+  border: none;
+
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+
+/* =========================================================
+   CORES DAS CAMADAS
+========================================================= */
+
+/*
+ * As texturas do BlockLayer são o verdadeiro fundo.
+ * Não colocamos mais uma cor sólida por trás delas.
+ */
+
+.surface-layer,
+.exploration-layer,
+.stone-layer,
+.deep-layer,
+.survival-layer {
+  background: transparent;
+}
+
+
+/* =========================================================
+   QUIZ
+========================================================= */
+
+.quiz-section {
+  position: relative;
+  padding:
+    100px
+    20px;
+  background-color: #000;
+  background-image: none;
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+}
+
+.quiz-container {
+  width: min(800px, 100%);
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+.quiz-container h2 {
+  font-family: 'Press Start 2P', monospace;
+
+  color: #fff;
+
+  font-size:
+    clamp(1.3rem, 4vw, 2rem);
+
+  margin-bottom: 15px;
+
+  text-shadow:
+    4px 4px 0 #000;
+}
+
+.quiz-intro {
+  color: #fff;
+
+  font-family: 'Silkscreen', monospace;
+
+  margin-bottom: 40px;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+.quiz-content,
+.quiz-result {
+  background: #c6c6c6;
+
+  border: 3px solid;
+
+  border-color:
+    #fff
+    #555
+    #555
+    #fff;
+
+  outline: 2px solid #000;
+
+  padding: 35px;
+
+  box-shadow:
+    5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.quiz-progress {
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.8rem;
+
+  color: #2d4a35;
+
+  margin-bottom: 20px;
+}
+
+.quiz-question {
+  color: #222;
+
+  font-size: 1.3rem;
+
+  margin-bottom: 30px;
+
+  line-height: 1.4;
+}
+
+.quiz-options {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  margin-bottom: 30px;
+}
+
+.quiz-option {
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.85rem;
+
+  background: #9c9c9c;
+
+  border: 2px solid;
+
+  border-color:
+    #fff
+    #373737
+    #373737
+    #fff;
+
+  padding:
+    13px
+    18px;
+
+  color: #222;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.15s ease;
+}
+
+.quiz-option:hover:not(:disabled) {
+  background: #b8b8b8;
+}
+
+.quiz-option:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.75;
+}
+
+.quiz-option.correct {
+  background: #7fbf6a;
+
+  border-color:
+    #fff
+    #2d5a24
+    #2d5a24
+    #fff;
+
+  color: #14300e;
+
+  animation: pulse 0.5s;
+}
+
+.quiz-option.incorrect {
+  background: #d9534f;
+
+  border-color:
+    #fff
+    #6b1d1a
+    #6b1d1a
+    #fff;
+
+  color: #fff;
+
+  animation: shake 0.5s;
+}
+
+.quiz-score {
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.8rem;
+
+  color: #2d4a35;
+
+  padding: 10px;
+
+  background: #a8a8a8;
+
+  border: 2px solid;
+
+  border-color:
+    #373737
+    #fff
+    #fff
+    #373737;
+}
+
+.quiz-result h3 {
+  font-family: 'Press Start 2P', monospace;
+
+  color: #2d4a35;
+
+  font-size: 1.5rem;
+
+  margin-bottom: 20px;
+}
+
+.final-score {
+  font-size: 1.6rem;
+
+  color: #2d4a35;
+
+  margin: 25px 0;
+}
+
+.result-message {
+  font-size: 1.1rem;
+
+  color: #3f3f3f;
+
+  margin-bottom: 35px;
+
+  line-height: 1.6;
+}
+
+.restart-button {
+  font-family: 'Silkscreen', monospace;
+
+  background: #4a7c59;
+
+  color: #fff;
+
+  border: 3px solid;
+
+  border-color:
+    #7fbf6a
+    #1e3a29
+    #1e3a29
+    #7fbf6a;
+
+  padding:
+    14px
+    34px;
+
+  font-size: 0.9rem;
+
+  cursor: pointer;
+
+  text-shadow:
+    2px 2px 0 #1e3a29;
+}
+
+.restart-button:hover {
+  background: #5a9469;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.minecraft-footer {
+  min-height: 0;
+
+  padding:
+    14px
+    20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 2px;
+
+  text-align: center;
+
+  background: #111;
+
+  color: #fff;
+}
+
+
+.minecraft-footer::before {
+  content: '🌌 MINECRAFT WORLD';
+
+  display: block;
+
+  font-family: 'Press Start 2P', monospace;
+
+  font-size: 0.65rem;
+
+  margin-bottom: 4px;
+
+  color: #cdb2ff;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+.minecraft-footer p {
+  margin: 1px 0;
+
+  opacity: 0.85;
+
+  font-size: 0.65rem;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+
+/* =========================================================
+   BEDROCK
+========================================================= */
+
+.bedrock-world {
+  position: relative;
+  min-height: 120px;
+  overflow: hidden;
+  padding:
+    35px
+    20px;
+  color: #fff;
+  background-image:
+    url('/blocks/bedrock.png');
+  background-repeat: repeat;
+  background-size: 64px 64px;
+  image-rendering: pixelated;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.bedrock-content {
+  position: relative;
+
+  z-index: 5;
+
+  width: min(850px, 100%);
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+.bedrock-content h2 {
+  font-family: 'Press Start 2P', monospace;
+
+  font-size:
+    clamp(1.3rem, 4vw, 2.2rem);
+
+  line-height: 1.5;
+
+  margin-bottom: 25px;
+
+  text-shadow:
+    4px 4px 0 #000;
+}
+
+
+.bedrock-content p {
+  font-family: 'Silkscreen', monospace;
+
+  font-size: 0.9rem;
+
+  line-height: 1.9;
+
+  margin-bottom: 15px;
+
+  text-shadow:
+    2px 2px 0 #000;
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .header-content {
+    flex-direction: column;
+
+    gap: 8px;
+  }
+
+  .minecraft-header {
+    padding: 12px 0;
+  }
+
+  .minecraft-header.scrolled {
+    padding: 7px 0;
+  }
+
+  .minecraft-header nav {
+    justify-content: center;
+  }
+
+  .world-section {
+    min-height: 0;
+
+    padding:
+      75px
+      30px;
+  }
+}
+
+
+@media (max-width: 700px) {
+
+  .world-section {
+    min-height: 0;
+
+    padding:
+      65px
+      22px;
+  }
+
+  .world-content {
+    width: 100%;
+  }
+
+  .world-panel p {
+    font-size: 0.82rem;
+  }
+
+  .world-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .world-panel h3 {
+    font-size: 0.85rem;
+  }
+
+  .minecraft-facts strong {
+    font-size: 0.7rem;
+  }
+
+  .minecraft-facts span {
+    font-size: 0.78rem;
+  }
+
+  .bedrock-world {
+    min-height: 100px;
+    padding:
+      30px
+      20px;
+  }
+
+  .quiz-section {
+    padding:
+      70px
+      15px;
+  }
+
+  .quiz-content,
+  .quiz-result {
+    padding:
+      25px
+      20px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .minecraft-header h1 {
+    font-size: 0.95rem;
+  }
+
+  .minecraft-header.scrolled h1 {
+    font-size: 0.8rem;
+  }
+
+  .minecraft-header nav a {
+    font-size: 0.58rem;
+
+    padding:
+      5px
+      6px;
+  }
+
+  .pixel-sun {
+    width: 70px;
+
+    height: 70px;
+
+    top: 125px;
+
+    right: 8%;
+  }
+
+  .coordinates-hud {
+    font-size: 0.6rem;
+
+    padding:
+      7px
+      10px;
+  }
+
+  .world-section {
+    min-height: 0;
+
+    padding:
+      60px
+      18px;
+  }
+
+  .minecraft-footer {
+    padding:
+      12px
+      15px;
+  }
+
+  .minecraft-footer::before {
+    font-size: 0.55rem;
+  }
+
+  .minecraft-footer p {
+    font-size: 0.6rem;
+  }
+}
+
+
+/* =========================================================
+   VOID
+========================================================= */
+
+.void-section {
+  min-height: 180px;
+  background: #000;
+}
